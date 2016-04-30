@@ -1,0 +1,19 @@
+{
+  "name": "YoutubeTagMaker",
+  "description": "Make youtube tags like embed, iframe etc..",
+  "version": "0.1",
+  "browser_action": {
+    "default_title": "youtube tagmaker",
+    "default_icon": "icon/icon_128.png",
+    "default_popup": "windows.html"
+  },
+  "icons" : {
+    "128" : "icon/icon_128.png",
+    "48" : "icon/icon_48.png",
+    "16" : "icon/icon_16.png"
+  },
+  "background": {"scripts": ["js/background.js"], "persistent": false},
+  "options_page": "options.html",
+  "permissions": ["downloads"],
+  "manifest_version": 2
+}
