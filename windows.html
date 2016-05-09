@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="window_app">
 <head>
     <meta charset="UTF-8">
     <title>Youtube Tag Maker</title>
@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<div class="ui input" ng-controller="windowCtrl">
+    <input type="text" placeholder="Search..." ng-model="tag">
+</div>
 
+<script type="text/javascript" src="/lib/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="/lib/semantic/semantic.min.js"></script>
+<script type="text/javascript" src="/lib/angular.min.js"></script>
+<script type="text/javascript" src="/lib/ngStorage.min.js"></script>
+<script type="text/javascript" src="/app/window_app.js"></script>
 </body>
 </html>

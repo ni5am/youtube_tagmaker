@@ -45,22 +45,22 @@
                             <div class="controlBox">
                                 <select class="ui small search dropdown"  ng-model="preset.selectSize">
                                     <option value="auto">자동</option>
-                                    <option value="[420, 315]">420 x 315</option>
-                                    <option value="[480, 360]">480 x 360</option>
-                                    <option value="[560, 360]">560 x 315</option>
-                                    <option value="[640, 360]">640 x 360</option>
-                                    <option value="[640, 480]">640 x 480</option>
-                                    <option value="[853, 480]">853 x 480</option>
-                                    <option value="[960, 540]">960 x 540</option>
-                                    <option value="[960, 720]">960 x 720</option>
-                                    <option value="[1280, 720]">1290 x 720</option>
-                                    <option value="[1920, 1080]">1920 x 720</option>
-                                    <option value="[170, 25]">오디오 전용</option>
-                                    <option value="">직접 선택</option>
+                                    <option value="420,315">420 x 315</option>
+                                    <option value="480,360">480 x 360</option>
+                                    <option value="560,360">560 x 315</option>
+                                    <option value="640,360">640 x 360</option>
+                                    <option value="640,480">640 x 480</option>
+                                    <option value="853,480">853 x 480</option>
+                                    <option value="960,540">960 x 540</option>
+                                    <option value="960,720">960 x 720</option>
+                                    <option value="1280,720">1290 x 720</option>
+                                    <option value="1920,1080">1920 x 720</option>
+                                    <option value="170,25">오디오 전용</option>
+                                    <option value="select">직접 선택</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="column displayFlex" ng-show="preset.selectSize == ''">
+                        <div class="column displayFlex" ng-show="preset.selectSize == 'select'">
                             <div class="ui small right labeled input" style="flex: 0.5; margin-right: 5px;">
                                 <input type="text" placeholder="넓이" size="5" ng-model="preset.customWidth">
                                 <div class="ui basic label">
@@ -93,7 +93,6 @@
                                 <select class="ui small search dropdown" id="tagType" ng-model="preset.tagType">
                                     <option value="iframe">iframe</option>
                                     <option value="embed">embed</option>
-                                    <option value="object">object</option>
                                 </select>
                             </div>
                         </div>

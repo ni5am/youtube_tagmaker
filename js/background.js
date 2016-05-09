@@ -16,8 +16,10 @@ function change(){
         var re = new RegExp("(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch(?:\.php)?\?.*v=([a-zA-Z0-9\-_]+)");
         if (re.test(url)) {
             chrome.browserAction.setIcon({path: '/icon/icon_48.png'});
+            localStorage.setItem('url', url);
         } else {
             chrome.browserAction.setIcon({path: '/icon/icon_48_gray.png'});
+            localStorage.removeItem('url');
         }
     });
 }
