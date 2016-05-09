@@ -37,7 +37,7 @@ app.controller('presetCtrl', ['$scope', '$localStorage', '$rootScope', function 
     };
 
     $scope.add = function() {
-        var preset = {"name":"Untitled Profile", "active":"active"}; // 디폴트 세팅이 여기에 박힐거얌
+        var preset = {"name":"Untitled Profile", "active":"active", "autoplay": false, "loop": false}; // 디폴트 세팅이 여기에 박힐거얌
 
         if($scope.presets == null){
             $scope.presets = [];
