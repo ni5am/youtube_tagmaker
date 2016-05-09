@@ -51,6 +51,10 @@ app.controller('presetCtrl', ['$scope', '$localStorage', '$rootScope', function 
         $rootScope.$broadcast('update', {});
 
     }
+
+    if($localStorage.activePreset == null){
+        $scope.add();
+    }
 }]);
 
 app.controller('controllerCtrl', ['$scope', '$localStorage', function ($scope, $localStorage) {

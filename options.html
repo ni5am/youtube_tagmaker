@@ -18,7 +18,7 @@
                 </div>
                 <a class="item {{preset.active}}" ng-click="select($index)" ng-repeat="preset in presets | filter:presetSearchName">
                     <i class="removeIcon remove icon" ng-click="remove($index)"></i>
-                    {{preset.name | limitTo : 20}}
+                    {{preset.name | limitTo : 11}}
                 </a>
 
                 <div class="item textAlignCenter">
