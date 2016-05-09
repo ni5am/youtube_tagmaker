@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="" style="min-width:600px; flex:1;" ng-controller="controllerCtrl">
+        <div class="" style="min-width:750px; flex:1;" ng-controller="controllerCtrl">
             <div class="ui segment">
                 <div class="controller_title">
                     <div class="ui massive fluid transparent input">
@@ -39,44 +39,43 @@
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui three column divided grid">
-                    <div class="column displayFlex">
-                        <div class="controlHead">영상 크기</div>
-                        <div class="controlBox">
-                            <select class="ui small search dropdown"  ng-model="preset.selectSize">
-                                <option value="auto">자동</option>
-                                <option value="[420, 315]">420 x 315</option>
-                                <option value="[480, 360]">480 x 360</option>
-                                <option value="[560, 360]">560 x 315</option>
-                                <option value="[640, 360]">640 x 360</option>
-                                <option value="[640, 480]">640 x 480</option>
-                                <option value="[853, 480]">853 x 480</option>
-                                <option value="[960, 540]">960 x 540</option>
-                                <option value="[960, 720]">960 x 720</option>
-                                <option value="[1280, 720]">1290 x 720</option>
-                                <option value="[1920, 1080]">1920 x 720</option>
-                                <option value="[170, 25]">오디오 전용</option>
-                                <option value="">직접 선택</option>
-                            </select>
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">영상 크기</div>
+                            <div class="controlBox">
+                                <select class="ui small search dropdown"  ng-model="preset.selectSize">
+                                    <option value="auto">자동</option>
+                                    <option value="[420, 315]">420 x 315</option>
+                                    <option value="[480, 360]">480 x 360</option>
+                                    <option value="[560, 360]">560 x 315</option>
+                                    <option value="[640, 360]">640 x 360</option>
+                                    <option value="[640, 480]">640 x 480</option>
+                                    <option value="[853, 480]">853 x 480</option>
+                                    <option value="[960, 540]">960 x 540</option>
+                                    <option value="[960, 720]">960 x 720</option>
+                                    <option value="[1280, 720]">1290 x 720</option>
+                                    <option value="[1920, 1080]">1920 x 720</option>
+                                    <option value="[170, 25]">오디오 전용</option>
+                                    <option value="">직접 선택</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class=""  ng-show="preset.selectSize == ''">
-                            <div class="ui right labeled input">
-                                <input type="text" placeholder="넓이" ng-model="preset.customWidth">
+                        <div class="column displayFlex" ng-show="preset.selectSize == ''">
+                            <div class="ui small right labeled input" style="flex: 0.5; margin-right: 5px;">
+                                <input type="text" placeholder="넓이" size="5" ng-model="preset.customWidth">
                                 <div class="ui basic label">
                                     px
                                 </div>
                             </div>
 
-                            <div class="ui right labeled input">
-                                <input type="text" placeholder="높이" ng-model="preset.customHeight">
+                            <div class="ui small right labeled input" style="flex: 0.5">
+                                <input type="text" placeholder="높이" size="5"  ng-model="preset.customHeight">
                                 <div class="ui basic label">
                                     px
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="row">
                         <div class="column displayFlex">
                             <div class="controlHead">버전</div>
