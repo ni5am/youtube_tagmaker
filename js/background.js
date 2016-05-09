@@ -1,10 +1,24 @@
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if(changeInfo && changeInfo.status == "complete") {
+        change();
+    }
+});
+
 chrome.tabs.onActivated.addListener(function(tabId, changeInfo, tab) {
+    change();
+});
+
+function change(){
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var url = tabs[0].url;
         console.log(url);
 
-        //이게 유튜브면 활성화~ 아이콘 색변경하기
-        //
+        var re = new RegExp("(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch(?:\.php)?\?.*v=([a-zA-Z0-9\-_]+)");
+        if (re.test(url)) {
+            chrome.browserAction.setIcon({path: '/icon/icon_48.png'});
+        } else {
+            chrome.browserAction.setIcon({path: '/icon/icon_48_gray.png'});
+        }
     });
-});
+}
 
