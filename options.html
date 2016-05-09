@@ -39,30 +39,59 @@
                 </div>
                 <div class="ui divider"></div>
                 <div class="ui three column divided grid">
+                    <div class="column displayFlex">
+                        <div class="controlHead">영상 크기</div>
+                        <div class="controlBox">
+                            <select class="ui small search dropdown"  ng-model="preset.selectSize">
+                                <option value="auto">자동</option>
+                                <option value="[420, 315]">420 x 315</option>
+                                <option value="[480, 360]">480 x 360</option>
+                                <option value="[560, 360]">560 x 315</option>
+                                <option value="[640, 360]">640 x 360</option>
+                                <option value="[640, 480]">640 x 480</option>
+                                <option value="[853, 480]">853 x 480</option>
+                                <option value="[960, 540]">960 x 540</option>
+                                <option value="[960, 720]">960 x 720</option>
+                                <option value="[1280, 720]">1290 x 720</option>
+                                <option value="[1920, 1080]">1920 x 720</option>
+                                <option value="[170, 25]">오디오 전용</option>
+                                <option value="">직접 선택</option>
+                            </select>
+                        </div>
+                        <div class=""  ng-show="preset.selectSize == ''">
+                            <div class="ui right labeled input">
+                                <input type="text" placeholder="넓이" ng-model="preset.customWidth">
+                                <div class="ui basic label">
+                                    px
+                                </div>
+                            </div>
+
+                            <div class="ui right labeled input">
+                                <input type="text" placeholder="높이" ng-model="preset.customHeight">
+                                <div class="ui basic label">
+                                    px
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div class="row">
                         <div class="column displayFlex">
-                            <div class="controlHead">영상 크기</div>
+                            <div class="controlHead">버전</div>
                             <div class="controlBox">
-                                <select class="ui small search dropdown">
-                                    <option value="auto">자동</option>
-                                    <option value="[420, 315]">420 x 315</option>
-                                    <option value="[480, 360]">480 x 360</option>
-                                    <option value="[560, 360]">560 x 315</option>
-                                    <option value="[640, 360]">640 x 360</option>
-                                    <option value="[640, 480]">640 x 480</option>
-                                    <option value="[853, 480]">853 x 480</option>
-                                    <option value="[960, 540]">960 x 540</option>
-                                    <option value="[960, 720]">960 x 720</option>
-                                    <option value="[1280, 720]">1290 x 720</option>
-                                    <option value="[1920, 1080]">1920 x 720</option>
-                                    <option value="[170, 25]">오디오 전용</option>
+                                <select class="ui small search dropdown" ng-model="preset.version">
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
                                 </select>
+                                <i style="width: 50%; margin-top: 10px;" class="warning circle icon link popup" data-content="2 버전의 경우 영상 화질 조정은 embed 태그에서만 지원됩니다." data-variation="inverted"></i>
                             </div>
                         </div>
                         <div class="column displayFlex">
                             <div class="controlHead">태그 방식</div>
                             <div class="controlBox">
-                                <select class="ui small search dropdown">
+                                <select class="ui small search dropdown" id="tagType" ng-model="preset.tagType">
                                     <option value="iframe">iframe</option>
                                     <option value="embed">embed</option>
                                     <option value="object">object</option>
@@ -72,25 +101,52 @@
                         <div class="column displayFlex">
                             <div class="controlHead">영상 화질</div>
                             <div class="controlBox">
-                                <select class="ui small search dropdown">
+                                <select class="ui small search dropdown" ng-model="preset.vq">
                                     <option value="auto">자동</option>
                                     <option value="light">240p</option>
                                     <option value="medium">360p</option>
                                     <option value="large">480p</option>
                                     <option value="hd720">HD 720p</option>
                                     <option value="hd1080">HD 1080p</option>
+                                    <option value="hd1440">HD 1440p</option>
+                                    <option value="hd2160">HD 2160p</option>
+                                    <option value="highres">최고화질</option>
                                 </select>
                             </div>
                         </div>
+
                     </div>
-                    <div class="column displayFlex">
-                        <div class="controlHead">컨트롤바 모드</div>
-                        <div class="controlBox">
-                            <select class="ui small search dropdown">
-                                <option value="1">자동숨김</option>
-                                <option value="0">숨기지않음</option>
-                                <option value="2">진행바만 보임</option>
-                            </select>
+
+
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">태마</div>
+                            <div class="controlBox">
+                                <select class="ui small search dropdown" ng-model="preset.theme">
+                                    <option value="dark">Dark</option>
+                                    <option value="light">Light</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">재생바 숨김</div>
+                            <div class="controlBox">
+                                <select class="ui small search dropdown" ng-model="preset.autohide">
+                                    <option value="2">재생중 얇아짐</option>
+                                    <option value="1">재생중 숨김</option>
+                                    <option value="0">숨기지 않음</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">컨트롤러 표시</div>
+                            <div class="controlBox">
+                                <select class="ui small search dropdown" ng-model="preset.controls">
+                                    <option value="1">표시</option>
+                                    <option value="2">재생 시 표시</option>
+                                    <option value="0">숨김</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -98,7 +154,7 @@
                             <div class="controlHead">자동재생</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" name="autoplay" ng-model="preset.autoplay">
+                                    <input type="checkbox" name="autoplay" ng-model="preset.autoplay" ng-true-value="1" ng-false-value="0">
                                     <label></label>
                                 </div>
                             </div>
@@ -107,7 +163,7 @@
                             <div class="controlHead">반복재생</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" name="loop" ng-model="preset.loop">
+                                    <input type="checkbox" name="loop" ng-model="preset.loop" ng-true-value="1" ng-false-value="0">
                                     <label></label>
                                 </div>
                             </div>
@@ -115,8 +171,8 @@
                         <div class="column displayFlex">
                             <div class="controlHead">추천영상 표시</div>
                             <div class="controlBox">
-                                <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                <div class="ui toggle custom checkbox" >
+                                    <input type="checkbox" value="1" name="rel" ng-model="preset.rel" ng-true-value="1" ng-false-value="0">
                                     <label></label>
                                 </div>
                             </div>
@@ -127,27 +183,28 @@
                             <div class="controlHead">상단바 숨김</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" name="showinfo" ng-model="preset.showinfo" ng-true-value="0" ng-false-value="1">
                                     <label></label>
                                 </div>
                             </div>
                         </div>
                         <div class="column displayFlex">
-                            <div class="controlHead">하단바 사용</div>
+                            <div class="controlHead">개인정보 강화모드</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" name="privite" ng-model="preset.privite" ng-true-value="'www.youtube-nocookie.com'" ng-false-value="'www.youtube.com'">
                                     <label></label>
                                 </div>
                             </div>
                         </div>
                         <div class="column displayFlex">
-                            <div class="controlHead">밝은테마 사용</div>
+                            <div class="controlHead">html5 플레이어 사용</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" ng-model="preset.html5"  ng-true-value="1" ng-false-value="0" ng-change="changeHtml()">
                                     <label></label>
                                 </div>
+                                <i class="warning circle icon link popup" data-content="html5 플레이어는 iframe tag만 사용가능합니다." data-variation="inverted"></i>
                             </div>
                         </div>
                     </div>
@@ -156,7 +213,7 @@
                             <div class="controlHead">특수효과 표시</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" name="iv_load_policy" ng-model="preset.iv_load_policy"  ng-true-value="1" ng-false-value="3">
                                     <label></label>
                                 </div>
                             </div>
@@ -165,7 +222,7 @@
                             <div class="controlHead">자막 사용</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" name="cc_load_policy" ng-model="preset.cc_load_policy"  ng-true-value="1" ng-false-value="0">
                                     <label></label>
                                 </div>
                             </div>
@@ -174,7 +231,7 @@
                             <div class="controlHead">키보드컨트롤 끄기</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" name="disablekb" ng-model="preset.disablekb"  ng-true-value="1" ng-false-value="0">
                                     <label></label>
                                 </div>
                             </div>
@@ -185,7 +242,7 @@
                             <div class="controlHead">유튜브로고 숨김</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" name="modestbranding" ng-model="preset.modestbranding"  ng-true-value="1" ng-false-value="0">
                                     <label></label>
                                 </div>
                             </div>
@@ -194,36 +251,7 @@
                             <div class="controlHead">전체화면 버튼 숨김</div>
                             <div class="controlBox">
                                 <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
-                                    <label></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column displayFlex">
-                            <div class="controlHead">html5 플레이어 사용</div>
-                            <div class="controlBox">
-                                <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
-                                    <label></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="column displayFlex">
-                            <div class="controlHead">개인정보 강화모드</div>
-                            <div class="controlBox">
-                                <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
-                                    <label></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column displayFlex">
-                            <div class="controlHead">진행바 색 설정</div>
-                            <div class="controlBox">
-                                <div class="ui toggle custom checkbox">
-                                    <input type="checkbox" checked="checked" name="">
+                                    <input type="checkbox" name="fs" ng-model="preset.fs"  ng-true-value="0" ng-false-value="1">
                                     <label></label>
                                 </div>
                             </div>
@@ -240,5 +268,6 @@
 <script type="text/javascript" src="/lib/angular.min.js"></script>
 <script type="text/javascript" src="/lib/ngStorage.min.js"></script>
 <script type="text/javascript" src="/app/app.js"></script>
+<script type="text/javascript" src="/js/options.js"></script>
 </body>
 </html>
