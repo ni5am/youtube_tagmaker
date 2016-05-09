@@ -1,10 +1,244 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html ng-app="app">
+<head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Youtube Tag Maker</title>
+    <link href="/lib/semantic/semantic.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/options.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+    <div class="displayFlex padding25">
+        <div class="presetMenu" ng-controller="presetCtrl">
+            <div class="ui vertical menu">
+                <div class="item">
+                    <div class="ui small icon input">
+                        <input type="text" ng-model="presetSearchName" placeholder="Search...">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <a class="item {{preset.active}}" ng-click="select($index)" ng-repeat="preset in presets | filter:presetSearchName">
+                    <i class="removeIcon remove icon" ng-click="remove($index)"></i>
+                    {{preset.name | limitTo : 20}}
+                </a>
 
+                <div class="item textAlignCenter">
+                    <button class="ui blue compact labeled icon button" ng-click="add()">
+                        <i class="plus icon"></i>
+                        새 프로필
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="" style="min-width:600px; flex:1;" ng-controller="controllerCtrl">
+            <div class="ui segment">
+                <div class="controller_title">
+                    <div class="ui massive fluid transparent input">
+                        <input type="text" ng-model="preset.name" placeholder="프로필 이름">
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui three column divided grid">
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">영상 크기</div>
+                            <div class="controlBox">
+                                <select class="ui small search dropdown">
+                                    <option value="auto">자동</option>
+                                    <option value="[420, 315]">420 x 315</option>
+                                    <option value="[480, 360]">480 x 360</option>
+                                    <option value="[560, 360]">560 x 315</option>
+                                    <option value="[640, 360]">640 x 360</option>
+                                    <option value="[640, 480]">640 x 480</option>
+                                    <option value="[853, 480]">853 x 480</option>
+                                    <option value="[960, 540]">960 x 540</option>
+                                    <option value="[960, 720]">960 x 720</option>
+                                    <option value="[1280, 720]">1290 x 720</option>
+                                    <option value="[1920, 1080]">1920 x 720</option>
+                                    <option value="[170, 25]">오디오 전용</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">태그 방식</div>
+                            <div class="controlBox">
+                                <select class="ui small search dropdown">
+                                    <option value="iframe">iframe</option>
+                                    <option value="embed">embed</option>
+                                    <option value="object">object</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">영상 화질</div>
+                            <div class="controlBox">
+                                <select class="ui small search dropdown">
+                                    <option value="auto">자동</option>
+                                    <option value="light">240p</option>
+                                    <option value="medium">360p</option>
+                                    <option value="large">480p</option>
+                                    <option value="hd720">HD 720p</option>
+                                    <option value="hd1080">HD 1080p</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column displayFlex">
+                        <div class="controlHead">컨트롤바 모드</div>
+                        <div class="controlBox">
+                            <select class="ui small search dropdown">
+                                <option value="1">자동숨김</option>
+                                <option value="0">숨기지않음</option>
+                                <option value="2">진행바만 보임</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">자동재생</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">반복재생</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">추천영상 표시</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">상단바 숨김</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">하단바 사용</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">밝은테마 사용</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">특수효과 표시</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">자막 사용</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">키보드컨트롤 끄기</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">유튜브로고 숨김</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">전체화면 버튼 숨김</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">html5 플레이어 사용</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column displayFlex">
+                            <div class="controlHead">개인정보 강화모드</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column displayFlex">
+                            <div class="controlHead">진행바 색 설정</div>
+                            <div class="controlBox">
+                                <div class="ui toggle custom checkbox">
+                                    <input type="checkbox" checked="checked" name="">
+                                    <label></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript" src="/lib/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="/lib/semantic/semantic.min.js"></script>
+<script type="text/javascript" src="/lib/angular.min.js"></script>
+<script type="text/javascript" src="/lib/ngStorage.min.js"></script>
+<script type="text/javascript" src="/app/app.js"></script>
 </body>
 </html>

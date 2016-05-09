@@ -1,0 +1,44 @@
+.displayFlex {
+    display: flex !important;
+}
+
+.padding25 {
+    padding: 25px;
+}
+
+.textAlignCenter {
+    text-align: center;
+}
+
+.removeIcon{
+    visibility: hidden;
+}
+
+.active .removeIcon{
+    visibility: visible;
+}
+
+
+.presetMenu {
+    width:230px;
+    flex:0 0 auto;
+}
+
+.presetMenu .item {
+    min-height: 40px;
+}
+
+.controlHead {
+    font-size: 11pt;
+    flex: initial;
+    min-width: 90px;
+    align-items: center;
+    display: flex;
+}
+
+.controlBox {
+    font-size: 10pt;
+    display: flex;
+    margin-left: auto;
+    min-width: 80px;
+}
