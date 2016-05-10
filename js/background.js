@@ -1,3 +1,11 @@
+chrome.runtime.onInstalled.addListener(function(details){
+    if(details.reason == "install"){
+        chrome.tabs.create({
+            url: chrome.extension.getURL("options.html")
+        });
+    }
+});
+
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if(changeInfo && changeInfo.status == "complete") {
         change();
