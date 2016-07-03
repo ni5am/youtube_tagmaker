@@ -6,16 +6,41 @@
     <link href="/lib/semantic/semantic.min.css" type="text/css" rel="stylesheet"/>
     <link href="/css/windows.css" type="text/css" rel="stylesheet"/>
 </head>
-<body>
+<body ng-controller="windowCtrl">
 
-<div class="ui input" ng-controller="windowCtrl">
-    <input type="text" placeholder="Search..." ng-model="tag">
-</div>
+    <div id="tagBox" ng-show="noShow == true">
+        <div class="ui action input">
+            <input id="copyTarget" type="text" ng-model="tag" readonly>
+            <button class="ui orange button" id="copyBtn" data-content="Copy!" data-position="bottom right">Copy</button>
+        </div>
+
+        <div class="column displayFlex" style="margin-top: 5px">
+            <div class="ui right input" style="margin-right: 8px;">
+                <input type="text" placeholder="분:초" size="5" ng-model="start" ng-change="updateStart()">
+            </div>
+            ~
+            <div class="ui right input" style="margin-left: 8px">
+                <input type="text" placeholder="분:초" size="5" ng-model="end" ng-change="updateEnd()">
+            </div>
+        </div>
+    </div>
+    <div class="ui divider" ng-show="noShow == true"></div>
+    <div id="presetBox" class="mgtb10px">
+        <div class="ui vertical secondary pointing menu width250px">
+            <a class="item {{preset.active}}" ng-click="select($index)" ng-repeat="preset in presets">
+                {{preset.name | limitTo : 11}}
+            </a>
+
+        </div>
+    </div>
+
+
 
 <script type="text/javascript" src="/lib/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="/lib/semantic/semantic.min.js"></script>
 <script type="text/javascript" src="/lib/angular.min.js"></script>
 <script type="text/javascript" src="/lib/ngStorage.min.js"></script>
 <script type="text/javascript" src="/app/window_app.js"></script>
+<script type="text/javascript" src="/js/windows.js"></script>
 </body>
 </html>

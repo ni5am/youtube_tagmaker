@@ -2,10 +2,86 @@ var app = angular.module('window_app', ['ngStorage']);
 
 app.controller('windowCtrl', ['$scope', '$localStorage', function ($scope, $localStorage) {
 
-    var v = gup("v", localStorage.getItem('url'));
+    var presets = $localStorage.presets;
 
-    var preset = $localStorage.presets[$localStorage.activePreset];
-    var width, height, private, version, vq = "", theme = "", autohide = "", controls = "", autoplay = "", loop = "", rel = "", showinfo = "", iv_load_policy= "", cc_load_policy = "", disablekb = "", modestbranding = "", fs = "";
+    $scope.presets = presets;
+
+    var activePreset = presets[$localStorage.activePreset];
+    activePreset.start = "";
+    activePreset.end = "";
+
+    var url = localStorage.getItem('url');
+
+    var re = new RegExp("(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch(?:\.php)?\?.*v=([a-zA-Z0-9\-_]+)");
+    if (re.test(url)) {
+        $scope.tag = makeTag(url, activePreset);
+        $scope.noShow = true;
+    } else {
+        $scope.noShow = false;
+    }
+
+    $scope.select = function(index) {
+        if($localStorage.activePreset != null)
+            $scope.presets[$localStorage.activePreset].active = "";
+
+        $scope.presets[index].active = "active";
+
+        $localStorage.activePreset = index;
+
+        activePreset = presets[index];
+
+        $scope.updateStart();
+        $scope.updateEnd();
+
+        $scope.tag = makeTag(localStorage.getItem('url'), activePreset);
+    };
+
+
+    $scope.updateStart = function() {
+
+        var startTime = $scope.start;
+
+        if(startTime != null)
+            activePreset.start = time2int(startTime);
+
+        $scope.tag = makeTag(localStorage.getItem('url'), activePreset);
+    };
+
+    $scope.updateEnd = function() {
+
+        var endTime = $scope.end;
+
+        if(endTime != null)
+            activePreset.end = time2int(endTime);
+
+        $scope.tag = makeTag(localStorage.getItem('url'), activePreset);
+    };
+
+
+}]);
+
+function time2int(time){
+
+    var timeSplited = [];
+
+    if(time > 0){ // 숫자 필터로 넣었는데.. 흠
+        return time*60;
+    }else{
+        timeSplited = time.split(":");
+
+        var min = timeSplited[0]*60;
+        var sec = timeSplited[1]*1;
+
+        var time = min + sec;
+
+        return time;
+    }
+
+
+}
+
+function makeTag(url, preset){
+    var width, height, private, version, vq = "", theme = "", autohide = "", controls = "", autoplay = "", loop = "", rel = "", showinfo = "", iv_load_policy= "", cc_load_policy = "", disablekb = "", modestbranding = "", fs = "", start = "", end = "";
 
     if(preset.selectSize == "select"){
         width = preset.customWidth;
@@ -62,9 +138,17 @@ app.controller('windowCtrl', ['$scope', '$localStorage', function ($scope, $loca
     if(preset.fs != "1")
         fs = "&fs="+preset.fs;
 
-    var param = version+vq+theme+autohide+controls+autoplay+loop+rel+showinfo+iv_load_policy+cc_load_policy+disablekb+modestbranding+fs;
+    if(preset.start != "" && isNaN(preset.start) != true )
+        start = "&start="+preset.start;
+
+    if(preset.end != "" && isNaN(preset.end) != true )
+        end = "&end="+preset.end;
+
+    var param = version+vq+theme+autohide+controls+autoplay+loop+rel+showinfo+iv_load_policy+cc_load_policy+disablekb+modestbranding+fs+start+end;
     var tag;
     //html5처리안함
+
+    var v = gup("v", url);
 
     if(preset.tagType == "iframe"){
         tag = '<iframe title="YouTube video player" class="youtube-player" type="text/html"  width="'+width+'" height="'+height+'" src="//'+private+'/embed/'+v+'?'+param+'" frameborder="0" allowfullscreen></iframe>';
@@ -73,8 +157,8 @@ app.controller('windowCtrl', ['$scope', '$localStorage', function ($scope, $loca
 
     }
 
-    $scope.tag = tag;
-}]);
+    return tag;
+}
 
 function gup( name, url ) {
     name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -83,3 +167,4 @@ function gup( name, url ) {
     var results = regex.exec( url );
     return results == null ? null : results[1];
 }
+

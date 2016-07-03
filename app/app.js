@@ -19,7 +19,7 @@ app.controller('presetCtrl', ['$scope', '$localStorage', '$rootScope', function 
 
     $scope.remove = function(index) {
         if($scope.presets.length == 1){
-            alert('삭제 불가');
+            alert('삭제 불가능합니다.');
             return;
         }
 
