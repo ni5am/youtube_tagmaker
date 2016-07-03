@@ -153,7 +153,7 @@ function makeTag(url, preset){
     if(preset.tagType == "iframe"){
         tag = '<iframe title="YouTube video player" class="youtube-player" type="text/html"  width="'+width+'" height="'+height+'" src="//'+private+'/embed/'+v+'?'+param+'" frameborder="0" allowfullscreen></iframe>';
     }else if(preset.tagType == "embed"){
-        tag = '<object width="'+width+'" height="'+height+'"><param name="movie" value="http://'+private+'/v/'+v+'?'+param+'"><param name="allowFullScreen" value="true"><param name="allowscriptaccess" value="always"><embed src="'+private+'/v/'+v+'?'+param+'" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="'+width+'" height="'+height+'"></object>';
+        tag = '<object width="'+width+'" height="'+height+'"><param name="movie" value="//'+private+'/v/'+v+'?'+param+'"><param name="allowFullScreen" value="true"><param name="allowscriptaccess" value="always"><embed src="//'+private+'/v/'+v+'?'+param+'" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="'+width+'" height="'+height+'"></object>';
 
     }
 
