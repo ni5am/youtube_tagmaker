@@ -1,0 +1,17 @@
+body {
+    min-width:260px;
+    height: auto;
+}
+
+#tagBox {
+    margin: 5px;
+}
+
+.width250px{
+    width: 250px !important;
+}
+
+.mgtb10px{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
