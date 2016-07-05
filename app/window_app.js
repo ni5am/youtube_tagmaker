@@ -120,7 +120,7 @@ function makeTag(url, preset){
     if(preset.loop == "1") // 반복재생이 있을경우 playlist가 필요하다.
         loop += "&playlist=1";
 
-    if(preset.rel != "0")
+    if(preset.rel != "1")
         rel = "&rel="+preset.rel;
 
     if(preset.showinfo != "1")
