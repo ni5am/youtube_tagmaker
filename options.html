@@ -80,7 +80,7 @@
                         <div class="column displayFlex">
                             <div class="controlHead">버전</div>
                             <div class="controlBox">
-                                <select class="ui small search dropdown" ng-model="preset.version">
+                                <select id="version" class="ui small search dropdown" ng-model="preset.version" ng-change="preset.test()">
                                     <option value="3">3</option>
                                     <option value="2">2</option>
                                 </select>
